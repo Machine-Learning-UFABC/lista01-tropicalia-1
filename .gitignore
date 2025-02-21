@@ -1,0 +1,8 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+
+# Ignora os arquivos de cache do knit
+SolucaoLista_cache/
+SolucaoLista_files/
