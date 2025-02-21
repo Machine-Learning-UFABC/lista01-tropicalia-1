@@ -1,11 +1,11 @@
 ---
 title: "Solução Lista 01"
 author: |
-        | Nome: Fulano de Tal
-        | E-mail: fdt@aluno.ufabc.edu.br
-        | Nome: Fulano de Tal
-        | E-mail: fdt@aluno.ufabc.edu.br
-        | (Não é preciso informar os RAs)
+        | Nome: Caio Stoduto Ervilha
+        | E-mail: caio.stoduto@aluno.ufabc.edu.br
+        | Nome: Nicolas Gomes Greco
+        | E-mail: nicolas.greco@aluno.ufabc.edu.br
+
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 output: pdf_document
 ---
