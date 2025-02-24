@@ -26,6 +26,10 @@ options(width =70)
 
 ## Exercício 02
 
+A Maldição da Dimensionalidade é um fenômeno observado na área de Aprendizado de Máquina, no qual o aumento do número de dimensões (ou variáveis de entrada) em um conjunto de dados ocasiona o aumento exponencial da distância entre os pontos do espaço, causando sua dispersão. Esse fenômeno é prejudicial ao aprendizado de máquina, pois pode diminuir sua performance, aumentar o tempo de treinamento, dificultar a identificação de padrões e até causar o *overfitting* — quando um modelo se ajusta excessivamente aos dados de treinamento e não generaliza bem para novos dados.
+
+Uma abordagem comum para mitigar esse problema é a aplicação de métodos de redução de dimensionalidade, que utilizam diferentes técnicas para diminuir o número de variáveis mantendo a maior quantidade possível de informação relevante.
+
 
 ## Exercício 03
 
@@ -37,3 +41,8 @@ options(width =70)
 
 
 ## Exercício 06 (Opcional)
+
+
+## Notas adicionais
+
+-   Todos os códigos desta lista foram realizados em Python 3.12.2;
