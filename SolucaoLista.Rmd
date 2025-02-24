@@ -31,3 +31,9 @@ options(width =70)
 
 
 ## Exercício 04
+
+
+## Exercício 05 (Opcional)
+
+
+## Exercício 06 (Opcional)
