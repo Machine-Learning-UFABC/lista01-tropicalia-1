@@ -23,12 +23,18 @@ options(width =70)
 
 ## Exercício 01
 
+a) Uma aplicação clássica na área de classificação é a de 'análise de crédito', onde o agente do empréstimo utiliza os dados do cliente para assim calcular a viabilidade de concessão de crédito. Um exemplo prático seria um dataset que possui inúmeros vetores, que representam os clientes, e cada componente desse vetor seria uma característica que ajude o algoritmo a tomar a decisão entre conceder ou não o crédito àquele usuário, como: histórico de pagamento, renda e outras informações relevantes de sua vida financeira e cada um desses vetores é rotulado como sendo de clientes inadimplentes ou não. Finalmente o algoritmo é devidamente treinado e dado novos vetores, pode-se estimar se o novo cliente pagará suas dívidas devidamente ou não.
+
+b) Um problema de regressão é o cálculo de preços de imóveis numa determinada região, usa-se essa estimativa para dar uma previsão do preço de um imóvel com base nos imóveis de característica mais parecida. O método começa com vetores que são os imóveis do dataset de treinamento, cada vetor possui componentes que são as caractéristicas de cada imóvel, por exemplo, quantidade de quartos, metros quadrados, quantidade de banheiros entre outros. Cada vetor desse também possui seu valor funcional (análogo ao rótulo para problemas de classificação), nesse contexto, é o preço do imóvel. Finalmente, o modelo treinado consegue calcular o valor funcional de um novo vetor, dado os vetores presentes em seu dataset, o que retorna finalmente seu preço estimado.
+
+c) As técnicas de agrupamento são normalmente utilizadas para resolver problemas em que há a necessidade de associações entre dados que não são facilmente vistas sem uma análise estatística completa, dessa forma a máquina fornece insights valiosos a respeito de um conjunto de dados não rotulado. Como por exemplo, no uso de técnicas de agrupamento por exmpresas de vendas online, que usam suas grandes quantidades de dados para melhorar seu marketing, descobrindo associações interessantes, como a relação de um certo perfil de consumidor com um produto específico.
 
 ## Exercício 02
 
 A Maldição da Dimensionalidade é um fenômeno observado na área de Aprendizado de Máquina, no qual o aumento do número de dimensões (ou variáveis de entrada) em um conjunto de dados ocasiona o aumento exponencial da distância entre os pontos do espaço, causando sua dispersão. Esse fenômeno é prejudicial ao aprendizado de máquina, pois pode diminuir sua performance, aumentar o tempo de treinamento, dificultar a identificação de padrões e até causar o *overfitting* — quando um modelo se ajusta excessivamente aos dados de treinamento e não generaliza bem para novos dados.
 
 Uma abordagem comum para mitigar esse problema é a aplicação de métodos de redução de dimensionalidade, que utilizam diferentes técnicas para diminuir o número de variáveis mantendo a maior quantidade possível de informação relevante.
+
 
 
 ## Exercício 03
