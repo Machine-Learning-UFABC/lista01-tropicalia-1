@@ -2,6 +2,7 @@
 .Rhistory
 .RData
 .Ruserdata
+.Rprofile
 
 # Ignora os arquivos de cache do knit
 SolucaoLista_cache/
