@@ -23,11 +23,11 @@ options(width =70)
 
 ## Exercício 01
 
-a) Uma aplicação clássica na área de classificação é a de 'análise de crédito', onde o agente do empréstimo utiliza os dados do cliente para assim calcular a viabilidade de concessão de crédito. Um exemplo prático seria um dataset que possui inúmeros vetores, que representam os clientes, e cada componente desse vetor seria uma característica que ajude o algoritmo a tomar a decisão entre conceder ou não o crédito àquele usuário, como: histórico de pagamento, renda e outras informações relevantes de sua vida financeira e cada um desses vetores é rotulado como sendo de clientes inadimplentes ou não. Finalmente o algoritmo é devidamente treinado e dado novos vetores, pode-se estimar se o novo cliente pagará suas dívidas devidamente ou não.
+a)  Uma aplicação clássica na área de classificação é a de 'análise de crédito', onde o agente do empréstimo utiliza os dados do cliente para assim calcular a viabilidade de concessão de crédito. Um exemplo prático seria um dataset que possui inúmeros vetores, que representam os clientes, e cada componente desse vetor seria uma característica que ajude o algoritmo a tomar a decisão entre conceder ou não o crédito àquele usuário, como: histórico de pagamento, renda e outras informações relevantes de sua vida financeira e cada um desses vetores é rotulado como sendo de clientes inadimplentes ou não. Finalmente o algoritmo é devidamente treinado e dado novos vetores, pode-se estimar se o novo cliente pagará suas dívidas devidamente ou não.
 
-b) Um problema de regressão é o cálculo de preços de imóveis numa determinada região, usa-se essa estimativa para dar uma previsão do preço de um imóvel com base nos imóveis de característica mais parecida. O método começa com vetores que são os imóveis do dataset de treinamento, cada vetor possui componentes que são as caractéristicas de cada imóvel, por exemplo, quantidade de quartos, metros quadrados, quantidade de banheiros entre outros. Cada vetor desse também possui seu valor funcional (análogo ao rótulo para problemas de classificação), nesse contexto, é o preço do imóvel. Finalmente, o modelo treinado consegue calcular o valor funcional de um novo vetor, dado os vetores presentes em seu dataset, o que retorna finalmente seu preço estimado.
+b)  Um problema de regressão é o cálculo de preços de imóveis numa determinada região, usa-se essa estimativa para dar uma previsão do preço de um imóvel com base nos imóveis de característica mais parecida. O método começa com vetores que são os imóveis do dataset de treinamento, cada vetor possui componentes que são as caractéristicas de cada imóvel, por exemplo, quantidade de quartos, metros quadrados, quantidade de banheiros entre outros. Cada vetor desse também possui seu valor funcional (análogo ao rótulo para problemas de classificação), nesse contexto, é o preço do imóvel. Finalmente, o modelo treinado consegue calcular o valor funcional de um novo vetor, dado os vetores presentes em seu dataset, o que retorna finalmente seu preço estimado.
 
-c) As técnicas de agrupamento são normalmente utilizadas para resolver problemas em que há a necessidade de associações entre dados que não são facilmente vistas sem uma análise estatística completa, dessa forma a máquina fornece insights valiosos a respeito de um conjunto de dados não rotulado. Como por exemplo, no uso de técnicas de agrupamento por exmpresas de vendas online, que usam suas grandes quantidades de dados para melhorar seu marketing, descobrindo associações interessantes, como a relação de um certo perfil de consumidor com um produto específico.
+c)  As técnicas de agrupamento são normalmente utilizadas para resolver problemas em que há a necessidade de associações entre dados que não são facilmente vistas sem uma análise estatística completa, dessa forma a máquina fornece insights valiosos a respeito de um conjunto de dados não rotulado. Como por exemplo, no uso de técnicas de agrupamento por exmpresas de vendas online, que usam suas grandes quantidades de dados para melhorar seu marketing, descobrindo associações interessantes, como a relação de um certo perfil de consumidor com um produto específico.
 
 ## Exercício 02
 
@@ -39,6 +39,12 @@ Uma abordagem comum para mitigar esse problema é a aplicação de métodos de r
 
 ```{r}
 library(tibble)
+
+
+library(reticulate)
+
+
+py_require("pandas")
 
 D <- tibble( x_1 = rnorm(100,1,1),
 x_2 = rnorm(100,-1,2),
@@ -54,10 +60,10 @@ import math
 df = pd.DataFrame(r.D)
     
 def knn(k: int, x: tuple, D: pd.DataFrame) -> str:
-  filteredDf = df.drop(['y'], axis=1, inplace=False)
+  filteredDf = D.drop(['y'], axis=1, inplace=False)
   distancias_rank = []
   
-  for i in range(len(df)):
+  for i in range(len(D)):
     distancia = 0
     for index, j in enumerate(filteredDf.iloc[i]):
       distancia+=(x[index]-j)**2
@@ -71,10 +77,11 @@ def knn(k: int, x: tuple, D: pd.DataFrame) -> str:
   for i in range(k):
     vizinhos.append(distancias_rank[i][0])
     
-  contagem = {"one": 0, "two": 0, "three": 0}
+  contagem = {classe: 0 for classe in D['y'].unique()}
   
   for index in vizinhos:
-    rotulo = df.iloc[index]['y']
+    rotulo = D.iloc[index]['y']
+    
     contagem[rotulo]+=1
   
   def rotulo_resultante(contagem):
@@ -85,8 +92,42 @@ def knn(k: int, x: tuple, D: pd.DataFrame) -> str:
 knn(10, (2,0), df)
 ```
 
-
 ## Exercício 04
+
+```{r}
+library(tidyverse)
+data("iris") # Carrega o banco no ambiente global
+iris <- as_tibble(iris) %>% # Converte para a dataframe tibble
+select(Petal.Length,Sepal.Length,Species) %>% # Seleciona colunas da dataframe
+rename( x_1 = Petal.Length, x_2 = Sepal.Length, y = Species) # Renomeia as colunas
+head(iris)
+```
+
+```{python}
+import pandas as pd
+
+dfIris = pd.DataFrame(r.iris)
+
+def validador(k: int, df: pd.DataFrame, knn: callable) -> None:
+  pontos = 0
+  linhas = len(df)
+  
+  for i in range(linhas):
+    vector = (df.iloc[i,0],df.iloc[i,1])
+    filteredDf = df.drop(i, inplace=False)
+    rotulo = knn(k, vector, filteredDf)
+    
+    if rotulo == df.iloc[i, 2]:
+      pontos+=1
+      
+  print(f'A funcao acertou {pontos} do total de {linhas} rótulos, com k = {k}')
+    
+
+validador(10, dfIris, knn)
+validador(1, dfIris, knn)
+
+
+```
 
 
 ## Exercício 05 (Opcional)
@@ -152,9 +193,7 @@ P(Y < z | X=x) = P(Y > z | X=x) = \frac{1}{2}
 $$
 
 Finalmente, pela definição de mediana de uma variável aleatória contínua tomando valor em $\mathbb{R}$ como o valor real $m$ tal que $P(Y>m) = P(Y <m) = \frac{1}{2}$, conclui-se que $z$ é a mediana, já que metade da probabilidade de $Y$ se encontra acima de $z$ e a outra metade abaixo de $z$.
-
 ## Exercício 06 (Opcional)
-
 
 ## Notas adicionais
 
