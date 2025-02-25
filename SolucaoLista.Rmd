@@ -40,14 +40,9 @@ Uma abordagem comum para mitigar esse problema é a aplicação de métodos de r
 ## Exercício 03
 
 ```{r}
-library(tibble)
-library(reticulate)
-py_require("pandas")
-
 D <- tibble( x_1 = rnorm(100,1,1),
 x_2 = rnorm(100,-1,2),
-y
-= factor(sample(c("one","two","three"),100,replace = T)))
+y = factor(sample(c("one","two","three"),100,replace = T)))
 head(D)
 ```
 
@@ -88,7 +83,6 @@ def knn(k: int, x: tuple, D: pd.DataFrame) -> str:
   return rotulo_resultante(contagem)
   
 knn(10, (2,0), df)
-    
 ```
 
 
@@ -97,6 +91,67 @@ knn(10, (2,0), df)
 
 ## Exercício 05 (Opcional)
 
+Inicialmente, é necessário definir a função de risco esperado a ser considerda e sua função de perda.
+
+$$
+\mathcal{R}(f) := \mathbb{E}_{XY}[\ell(Y,f(X))]
+$$
+$$
+\ell(y,y') := |y-y'|
+$$
+
+Em seguida, fixa-se a função de risco esperado em um valor arbitrário de x.
+
+$$
+\mathcal{R}(f) = \mathbb{E}[\ell(Y,f(x))|X=x]
+$$
+
+Com isso, é possível derivar a função de risco esperado em função de x.
+
+$$
+\frac{\partial}{\partial x}\mathbb{E}[\ell(Y,f(X))|X=x]
+$$
+
+Substitui-se função de perda $\ell(Y,f(X))$ por $|y-y'|$, sabendo que a derivada de $\ell(y,y') := |y-y'|$ existe e é limitada quando $y \neq y'$.
+
+$$
+\mathbb{E}[\frac{\partial}{\partial x}|y-f(x)| | X=x]
+$$
+
+Analisando a derivada, é possível dividir em dois casos:
+
+$$
+\begin{cases}
+y < f(x): \frac{\partial}{\partial x}|y-f(x)| = +1 \\
+y > f(x): \frac{\partial}{\partial x}|y-f(x)| = -1
+\end{cases}
+$$
+
+Substituindo os casos com suas respectivas probabilidades, pode-se descobrir o valor esperado.
+
+$$
+\mathbb{E}[\frac{\partial}{\partial x}|y-f(x)||X=x] = (+1) \cdot  P(Y < z | X=x) + (-1) \cdot  P(Y > z | X=x)
+$$
+$$
+\mathbb{E}[\frac{\partial}{\partial x}|y-f(x)||X=x] = P(Y < z | X=x) - P(Y > z | X=x)
+$$
+
+Com isso, encontra-se o ponto crítico igualando a derivada a 0 para descobrir o ponto mínimo.
+
+$$
+P(Y < z | X=x) - P(Y > z | X=x) = 0
+$$
+$$
+P(Y < z | X=x) = P(Y > z | X=x)
+$$
+
+Finalmente, como a probabilidade de $Y$ ser maior e menor que $z$ são iguais, e como isso cobre todo o universo de casos por ser uma variável aleatória contínua, é possível deduzir que essas probabilidades são iguais a $\frac{1}{2}$.
+
+$$
+P(Y < z | X=x) = P(Y > z | X=x) = \frac{1}{2}
+$$
+
+Finalmente, pela definição de mediana de uma variável aleatória contínua tomando valor em $\mathbb{R}$ como o valor real $m$ tal que $P(Y>m) = P(Y <m) = \frac{1}{2}$, conclui-se que $z$ é a mediana, já que metade das variáveis aleatórias de $Y$ se encontra acima de $z$ e a outra metade abaixo de $z$.
 
 ## Exercício 06 (Opcional)
 
