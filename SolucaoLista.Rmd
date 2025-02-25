@@ -151,7 +151,7 @@ $$
 P(Y < z | X=x) = P(Y > z | X=x) = \frac{1}{2}
 $$
 
-Finalmente, pela definição de mediana de uma variável aleatória contínua tomando valor em $\mathbb{R}$ como o valor real $m$ tal que $P(Y>m) = P(Y <m) = \frac{1}{2}$, conclui-se que $z$ é a mediana, já que metade das variáveis aleatórias de $Y$ se encontra acima de $z$ e a outra metade abaixo de $z$.
+Finalmente, pela definição de mediana de uma variável aleatória contínua tomando valor em $\mathbb{R}$ como o valor real $m$ tal que $P(Y>m) = P(Y <m) = \frac{1}{2}$, conclui-se que $z$ é a mediana, já que metade da probabilidade de $Y$ se encontra acima de $z$ e a outra metade abaixo de $z$.
 
 ## Exercício 06 (Opcional)
 
