@@ -220,7 +220,7 @@ Enfim, define a probabilidade de ao menos um ponto estar a uma distância $\leq$
 $$
 P(\exists\ p\ \epsilon\ V_{R}) = 1 - (1 - r^d)^m
 $$
-Como já discutido no exercício anterior, no âmbito da distância absoluta podemos considerar que a distribuição probabilistica partindo da mediana é dada por $\frac{1}{2}$ para a distribuição de pontos com distância menor e maior que a distância de $r$. Com isso, podemos igualar $P(\exists\ p\ \epsilon\ V_{R})$ com $\frac{1}{2}.
+Como já discutido no exercício anterior, no âmbito da distância absoluta podemos considerar que a distribuição probabilistica partindo da mediana é dada por $\frac{1}{2}$ para a distribuição de pontos com distância menor e maior que a distância de $r$. Com isso, podemos igualar $P(\exists\ p\ \epsilon\ V_{R})$ com $\frac{1}{2}$.
 
 $$
 1 - (1 - r^d)^m = 0.5
