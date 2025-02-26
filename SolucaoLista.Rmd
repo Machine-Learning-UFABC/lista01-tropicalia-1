@@ -171,29 +171,32 @@ $$
 Substituindo os casos com suas respectivas probabilidades, pode-se descobrir o valor esperado.
 
 $$
-\mathbb{E}[\frac{\partial}{\partial x}|y-f(x)||X=x] = (+1) \cdot  P(Y < z | X=x) + (-1) \cdot  P(Y > z | X=x)
+\mathbb{E}[\frac{\partial}{\partial x}|y-f(x)||X=x] = (+1) \cdot  P(Y < f(x) | X=x) + (-1) \cdot  P(Y > f(x) | X=x)
 $$
 $$
-\mathbb{E}[\frac{\partial}{\partial x}|y-f(x)||X=x] = P(Y < z | X=x) - P(Y > z | X=x)
+\mathbb{E}[\frac{\partial}{\partial x}|y-f(x)||X=x] = P(Y < f(x) | X=x) - P(Y > f(x) | X=x)
 $$
 
 Com isso, encontra-se o ponto crítico igualando a derivada a 0 para descobrir o ponto mínimo.
 
 $$
-P(Y < z | X=x) - P(Y > z | X=x) = 0
+P(Y < f(x) | X=x) - P(Y > f(x) | X=x) = 0
 $$
 $$
-P(Y < z | X=x) = P(Y > z | X=x)
-$$
-
-Finalmente, como a probabilidade de $Y$ ser maior e menor que $z$ são iguais, e como isso cobre todo o universo de casos por ser uma variável aleatória contínua, é possível deduzir que essas probabilidades são iguais a $\frac{1}{2}$.
-
-$$
-P(Y < z | X=x) = P(Y > z | X=x) = \frac{1}{2}
+P(Y < f(x) | X=x) = P(Y > f(x) | X=x)
 $$
 
-Finalmente, pela definição de mediana de uma variável aleatória contínua tomando valor em $\mathbb{R}$ como o valor real $m$ tal que $P(Y>m) = P(Y <m) = \frac{1}{2}$, conclui-se que $z$ é a mediana, já que metade da probabilidade de $Y$ se encontra acima de $z$ e a outra metade abaixo de $z$.
+Finalmente, como a probabilidade de $Y$ ser maior e menor que $f(x)$ são iguais, e como isso cobre todo o universo de casos por ser uma variável aleatória contínua, é possível deduzir que essas probabilidades são iguais a $\frac{1}{2}$.
+
+$$
+P(Y < f(x) | X=x) = P(Y > f(x) | X=x) = \frac{1}{2}
+$$
+
+Finalmente, pela definição de mediana de uma variável aleatória contínua tomando valor em $\mathbb{R}$ como o valor real $m$ tal que $P(Y>m) = P(Y <m) = \frac{1}{2}$, conclui-se que $f(x)$ é a mediana, já que metade da probabilidade de $Y$ se encontra acima de $f(x)$ e a outra metade abaixo de $f(x)$.
+
 ## Exercício 06 (Opcional)
+
+
 
 ## Notas adicionais
 
