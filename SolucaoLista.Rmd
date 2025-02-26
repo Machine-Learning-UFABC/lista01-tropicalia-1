@@ -23,7 +23,7 @@ options(width =70)
 library(reticulate)
 
 .onLoad <- function(libname, pkgname) {
-  reticulate::py_require("scipy")
+  reticulate::py_require("pandas")
 }
 ```
 
