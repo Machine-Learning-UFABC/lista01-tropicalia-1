@@ -19,6 +19,12 @@ knitr::opts_chunk$set(echo = T,
                       warning=FALSE,
                       message=FALSE)
 options(width =70)
+
+library(reticulate)
+
+.onLoad <- function(libname, pkgname) {
+  reticulate::py_require("scipy")
+}
 ```
 
 ## Exercício 01
@@ -37,14 +43,8 @@ Uma abordagem comum para mitigar esse problema é a aplicação de métodos de r
 
 ## Exercício 03
 
-```{r}
+```{r, exercicio-3-R}
 library(tibble)
-
-
-library(reticulate)
-
-
-py_require("pandas")
 
 D <- tibble( x_1 = rnorm(100,1,1),
 x_2 = rnorm(100,-1,2),
@@ -52,7 +52,7 @@ y = factor(sample(c("one","two","three"),100,replace = T)))
 head(D)
 ```
 
-```{python}
+```{python, exercicio-3-Python}
 
 import pandas as pd
 import math
@@ -94,16 +94,18 @@ knn(10, (2,0), df)
 
 ## Exercício 04
 
-```{r}
+```{r, , exercicio-4-R}
 library(tidyverse)
+
 data("iris") # Carrega o banco no ambiente global
 iris <- as_tibble(iris) %>% # Converte para a dataframe tibble
-select(Petal.Length,Sepal.Length,Species) %>% # Seleciona colunas da dataframe
-rename( x_1 = Petal.Length, x_2 = Sepal.Length, y = Species) # Renomeia as colunas
+  select(Petal.Length,Sepal.Length,Species) %>% # Seleciona colunas da dataframe
+  rename( x_1 = Petal.Length, x_2 = Sepal.Length, y = Species) # Renomeia as colunas
+
 head(iris)
 ```
 
-```{python}
+```{python, , exercicio-4-Python}
 import pandas as pd
 
 dfIris = pd.DataFrame(r.iris)
@@ -125,8 +127,6 @@ def validador(k: int, df: pd.DataFrame, knn: callable) -> None:
 
 validador(10, dfIris, knn)
 validador(1, dfIris, knn)
-
-
 ```
 
 
@@ -196,7 +196,47 @@ Finalmente, pela definição de mediana de uma variável aleatória contínua to
 
 ## Exercício 06 (Opcional)
 
+Sabe-se que o volume de uma hiperesfera é proporcional ao raio elevado a dimensão do espaço.
 
+$$
+V_{R} \propto R^{d}
+$$
+
+Considerando a distribuição uniforme em uma hiperesfera, é possível escrever a probabilidade de um ponto estar a uma distância $\leq$ r proporcionalmnete ao volume da hiperesfera.
+
+$$
+P(distância \leq r) = \frac{V_{r}}{V_{1}} = \frac{r^{d}}{1^{d}} = r^{d}
+$$
+Logo, define a probabilidade de que todos os $m$ pontos estejam à uma distância maior que $r$ da origem.
+
+$$
+P(distância > r) = (1 - r^d)
+$$
+$$
+P(distância > r)^m = (1 - r^d)^m
+$$
+Enfim, define a probabilidade de ao menos um ponto estar a uma distância $\leq$ r.
+
+$$
+P(\exists\ p\ \epsilon\ V_{R}) = 1 - (1 - r^d)^m
+$$
+Como já discutido no exercício anterior, no âmbito da distância absoluta podemos considerar que a distribuição probabilistica partindo da mediana é dada por $\frac{1}{2}$ para a distribuição de pontos com distância menor e maior que a distância de $r$. Com isso, podemos igualar $P(\exists\ p\ \epsilon\ V_{R})$ com $\frac{1}{2}.
+
+$$
+1 - (1 - r^d)^m = 0.5
+$$
+$$
+(1 - r^d)^m = 0.5
+$$
+$$
+1 - r^d = 0.5^{\frac{1}{m}}
+$$
+$$
+r^d = 1 - 0.5^{\frac{1}{m}}
+$$
+$$
+r = (1 - 0.5^{\frac{1}{m}})^{\frac{1}{^d}}
+$$
 
 ## Notas adicionais
 
